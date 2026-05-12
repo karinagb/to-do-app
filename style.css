@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.add-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  gap: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 60%;
+  border-radius: 10px;
+  border: 0.2px solid #ccc;
+}
+
+.states {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  gap: 20px;
+}
+
+.state {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  flex: 1;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
