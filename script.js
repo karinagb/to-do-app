@@ -1,22 +1,72 @@
 const form = document.querySelector('.add-task');
+
+const lists = document.querySelectorAll('.list');
 const to_do_list = document.querySelector('.to-do-list');
+const doing_list = document.querySelector('.doing-list');
+const done_list = document.querySelector('.done-list');
+
 const tasks = [];
+let task;
 
 function addNewTask(e) {
   e.preventDefault();
 
-  const task = this.querySelector('[name=new-task]').value;
-  tasks.push(task);
-  populateList(tasks, to_do_list);
+  const text = this.querySelector('[name=new-task]').value;
+  const newTask = {
+    text,
+    doing: false,
+    done: false,
+  };
+  tasks.push(newTask);
+  renderAllLists();
   this.reset();
 }
 
-function populateList(tasks, to_do_list){
-    to_do_list.innerHTML = tasks
-    .map((task)=>{
-        return `<li>${task}</li>`
+function populateList(tasks, list) {
+  list.innerHTML = tasks
+    .map((task) => {
+      return `<li draggable="true">${task.text}</li>`;
     })
-    .join('')
+    .join('');
+}
+
+function updateList(e) {
+  e.preventDefault();
+  if (task.doing === false && task.done === false) {
+    task.doing = true;
+  } else if (task.doing === true && task.done === false) {
+    task.done = true;
+  }
+  renderAllLists();
+}
+
+function renderAllLists() {
+  populateList(
+    tasks.filter((task) => !task.doing && !task.done),
+    to_do_list,
+  );
+  populateList(
+    tasks.filter((task) => task.doing && !task.done),
+    doing_list,
+  );
+  populateList(
+    tasks.filter((task) => task.done),
+    done_list,
+  );
 }
 
 form.addEventListener('submit', addNewTask);
+
+document.addEventListener('dragstart', (e) => {
+  const text = e.target.textContent;
+
+  task = tasks.find((task) => task.text === text);
+});
+
+lists.forEach((list) => {
+  list.addEventListener('dragover', (e) => {
+    e.preventDefault();
+  });
+
+  list.addEventListener('drop', updateList);
+});
