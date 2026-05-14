@@ -26,8 +26,11 @@ function addNewTask(e) {
 
 function populateList(tasks, list) {
   list.innerHTML = tasks
-    .map((task) => {
-      return `<li draggable="true">${task.text}</li>`;
+    .map((task, i) => {
+      return `<li draggable="true">
+      <label for="task${i}">${task.text}</label>
+      <button data-index=${i}>x</button>
+      </li>`;
     })
     .join('');
 }
@@ -60,10 +63,12 @@ function renderAllLists() {
   localStorage.setItem('items', JSON.stringify(tasks));
 }
 
+
 form.addEventListener('submit', addNewTask);
 
 document.addEventListener('dragstart', (e) => {
-  const text = e.target.textContent;
+  console.log(e.target);
+  const text = e.target.querySelector('label').textContent;
   task = tasks.find((task) => task.text === text);
 });
 
@@ -73,4 +78,12 @@ lists.forEach((list) => {
   });
 
   list.addEventListener('drop', updateList);
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target.matches('button[data-index]')) {
+    const index = e.target.dataset.index;
+    tasks.splice(index, 1);
+    renderAllLists();
+  }
 });
