@@ -68,4 +68,7 @@ li {
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

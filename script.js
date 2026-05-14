@@ -4,9 +4,11 @@ const lists = document.querySelectorAll('.list');
 const to_do_list = document.querySelector('.to-do-list');
 const doing_list = document.querySelector('.doing-list');
 const done_list = document.querySelector('.done-list');
+const tasks = JSON.parse(localStorage.getItem('items')) || [];
 
-const tasks = [];
 let task;
+
+renderAllLists();
 
 function addNewTask(e) {
   e.preventDefault();
@@ -32,11 +34,13 @@ function populateList(tasks, list) {
 
 function updateList(e) {
   e.preventDefault();
+
   if (task.doing === false && task.done === false) {
     task.doing = true;
   } else if (task.doing === true && task.done === false) {
     task.done = true;
   }
+
   renderAllLists();
 }
 
@@ -53,13 +57,13 @@ function renderAllLists() {
     tasks.filter((task) => task.done),
     done_list,
   );
+  localStorage.setItem('items', JSON.stringify(tasks));
 }
 
 form.addEventListener('submit', addNewTask);
 
 document.addEventListener('dragstart', (e) => {
   const text = e.target.textContent;
-
   task = tasks.find((task) => task.text === text);
 });
 
