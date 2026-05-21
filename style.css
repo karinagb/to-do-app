@@ -1,74 +1,233 @@
-body {
+/* ===== RESET ===== */
+
+* {
   margin: 0;
-  font-family: sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-header {
-  display: flex;
-  justify-content: center;
+/* ===== BODY ===== */
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #111827, #1e1b4b);
+  color: #f9fafb;
 }
+
+/* ===== HEADER ===== */
+
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+/* ===== MAIN ===== */
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   padding: 20px;
 }
 
+/* ===== ADD TASK ===== */
+
 .add-task {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  max-width: 500px;
-  gap: 20px;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  padding: 25px;
+  border-radius: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-input {
-  padding: 10px;
-  width: 60%;
-  border-radius: 10px;
-  border: 0.2px solid #ccc;
+.add-task h3 {
+  font-size: 1.1rem;
+  white-space: nowrap;
+  color: #d1d5db;
 }
+
+.add-task input {
+  flex: 1;
+
+  padding: 14px 16px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.add-task input::placeholder {
+  color: #cbd5e1;
+}
+
+.add-task input:focus {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.35);
+}
+
+/* ===== BUTTON ===== */
+
+button {
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== STATES ===== */
 
 .states {
+  width: 100%;
+  max-width: 1200px;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 900px;
   gap: 20px;
 }
 
-@media (min-width: 720px) {
+/* ===== RESPONSIVE ===== */
+
+@media (min-width: 850px) {
   .states {
-    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: flex-start;
   }
 }
 
+/* ===== STATE CARD ===== */
+
 .state {
   flex: 1;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 24px;
+
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+
+  min-height: 400px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+
+/* ===== COLUMN TITLES ===== */
+
+.state h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ===== COLUMN COLORS ===== */
+
+.to-do h2 {
+  color: #facc15;
+}
+
+.doing h2 {
+  color: #60a5fa;
+}
+
+.done h2 {
+  color: #4ade80;
+}
+
+/* ===== TASK LIST ===== */
 
 ul {
   list-style: none;
-  padding: 0;
-  min-height: 50px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  min-height: 100px;
 }
 
+/* ===== TASK ITEM ===== */
+
 li {
-  flex: 1;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  padding: 14px 16px;
+
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  gap: 10px;
+
+  transition: 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 10px;
 }
